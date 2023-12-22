@@ -90,10 +90,7 @@ public class Config {
     public Optional<List<String>> getLootTablesFromBiomeId(Identifier identifier){
         String stringId = identifier.toString();
         if (!data.biomeKeys.containsKey(stringId)) { //If biomeKeys doesn't contain the id
-            if (data.biomeKeys.containsKey("default")){ //but contains the "default" key word
-                return Optional.of(data.biomeKeys.get("default")); //return the "default" options
-            }
-            return Optional.empty(); //else, return empty
+            return Optional.ofNullable(data.biomeKeys.get("default")); //Try to return default
         }
         return Optional.of(data.biomeKeys.get(stringId)); //return the options of the id
     }
